@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedHelp Pro - Professional Tibbiy va Salomatlik Do'koni</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+  <!-- TOP BAR -->
+  <div class="bg-teal-700 text-teal-50 text-xs py-2 px-4 hidden sm:block">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-6">
+        <span><i class="fas fa-truck-medical mr-1.5"></i> Respublika bo'ylab tezkor yetkazish</span>
+        <span><i class="fas fa-shield-halved mr-1.5"></i> 100% Sertifikatlangan original mahsulotlar</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span><i class="fas fa-headset mr-1"></i> Qo'llab-quvvatlash: 24/7 Onlayn</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="bg-nav bg-white/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-2xl font-extrabold text-teal-600">
+        <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shadow-md shadow-teal-500/20">
+          <i class="fas fa-notes-medical text-xl"></i>
+        </div>
+        <span>Med<span class="text-slate-800 dark:text-white">Help</span><span class="text-xs ml-1 bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300 font-bold px-2 py-0.5 rounded-full">PRO</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 font-semibold text-sm">
+        <a href="index.html" class="text-teal-600 font-bold" data-i18n="home">Bosh sahifa</a>
+        <a href="products.html" class="hover:text-teal-600 transition" data-i18n="products">Mahsulotlar</a>
+        <a href="favorites.html" class="hover:text-teal-600 transition" data-i18n="favorites">Saralanganlar</a>
+        <a href="about.html" class="hover:text-teal-600 transition" data-i18n="about">Biz haqimizda</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- Til tanlash -->
+        <select id="langSelect" class="border border-slate-200 dark:border-slate-700 font-semibold rounded-lg px-2.5 py-1.5 text-xs bg-slate-100 dark:bg-slate-800 outline-none cursor-pointer">
+          <option value="uz">🇺🇿 O'zbek</option>
+          <option value="ru">🇷🇺 Русский</option>
+          <option value="en">🇬🇧 English</option>
+        </select>
+
+        <!-- Dark / Light Rejim -->
+        <button id="themeToggleBtn" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800">
+          <i class="fas fa-moon text-slate-700"></i>
+        </button>
+
+        <!-- Izbrannoe -->
+        <a href="favorites.html" class="relative w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:text-red-500 transition">
+          <i class="fas fa-heart text-slate-600 dark:text-slate-300"></i>
+          <span id="favCount" class="absolute -top-1.5 -right-1.5 bg-red-500 text-white font-bold text-[10px] w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </a>
+
+        <!-- Savat -->
+        <a href="cart.html" class="relative bg-teal-600 hover:bg-teal-700 text-white px-3.5 py-2 rounded-lg font-semibold text-sm flex items-center gap-2 shadow-sm transition">
+          <i class="fas fa-cart-shopping"></i>
+          <span class="hidden sm:inline" data-i18n="cart">Savatcha</span>
+          <span id="cartCount" class="bg-white text-teal-700 font-extrabold text-xs px-1.5 py-0.2 rounded-full">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <!-- HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-4 py-12 md:py-20 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
+          <i class="fas fa-shield-heart"></i> Ishonchli Tibbiy Platforma
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-slate-900 dark:text-white" data-i18n="heroTitle">
+          Sog'liqni Saqlash — Har Bir Xonadon Uchun Qulay va Ishonchli
+        </h1>
+        <p class="mt-5 text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed text-muted" data-i18n="heroSub">
+          Sertifikatlangan tibbiy buyumlar, oilaviy parvarish vositalari va vitaminlar. Buyurtmalar zudlik bilan Telegram bot orqali operatorga yo'naltiriladi.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4 items-center">
+          <a href="products.html" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-teal-600/30 transition flex items-center gap-2" data-i18n="shopNow">
+            <span>Katalogni ko'rish</span>
+            <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+          <a href="#benefits" class="border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold px-6 py-3.5 rounded-xl transition" data-i18n="exploreFeatures">
+            Afzalliklar
+          </a>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-3xl blur-2xl opacity-20 -z-10"></div>
+
+
+    </section>
+
+    <!-- STATISTIKA BLOKI -->
+    <section class="max-w-7xl mx-auto px-4 pb-12">
+      <div class="bg-card bg-white border border-slate-200 dark:border-slate-800 rounded-2xl p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center shadow-sm">
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-teal-600">10,000+</p>
+          <p class="text-sm font-medium text-muted mt-1">Yetkazilgan Buyurtmalar</p>
+        </div>
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-teal-600">99.8%</p>
+          <p class="text-sm font-medium text-muted mt-1">Ijobiy Baholar</p>
+        </div>
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-teal-600">100%</p>
+          <p class="text-sm font-medium text-muted mt-1">Sertifikatlangan Mahsulot</p>
+        </div>
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-teal-600">15 daqiqa</p>
+          <p class="text-sm font-medium text-muted mt-1">Telegramda Aloqaga Chiqish</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AFZALLIKLAR SECTION -->
+    <section id="benefits" class="bg-slate-100 dark:bg-slate-900/50 py-16 border-y border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-teal-600 font-bold text-xs uppercase tracking-wider">Nega Aynan Biz?</span>
+          <h2 class="text-3xl font-extrabold mt-2">Salomatlik va Ishonch Standartlari</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-card bg-white p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:-translate-y-1 transition duration-200">
+            <div class="w-14 h-14 bg-teal-100 dark:bg-teal-900/50 text-teal-600 rounded-2xl flex items-center justify-center text-2xl mb-5">
+              <i class="fab fa-telegram-plane"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Avtomat Telegram Bot</h3>
+            <p class="text-muted text-sm leading-relaxed">
+              Buyurtmangiz darhol bizning Telegram bot tizimimizga uzatiladi va operator tomonidan zudlik bilan ishlov beriladi.
+            </p>
+          </div>
+          <div class="bg-card bg-white p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:-translate-y-1 transition duration-200">
+            <div class="w-14 h-14 bg-teal-100 dark:bg-teal-900/50 text-teal-600 rounded-2xl flex items-center justify-center text-2xl mb-5">
+              <i class="fas fa-user-doctor"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Kafolatlangan Sifat</h3>
+            <p class="text-muted text-sm leading-relaxed">
+              Barcha uskuna va vitaminlar jahon va milliy standartlar talablariga javob beradi va to'liq original hisoblanadi.
+            </p>
+          </div>
+          <div class="bg-card bg-white p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:-translate-y-1 transition duration-200">
+            <div class="w-14 h-14 bg-teal-100 dark:bg-teal-900/50 text-teal-600 rounded-2xl flex items-center justify-center text-2xl mb-5">
+              <i class="fas fa-boxes-packing"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Steril va Ehtiyotkor Yetkazish</h3>
+            <p class="text-muted text-sm leading-relaxed">
+              Tibbiy buyumlar barcha sanitariya talablari va harorat rejimiga qat'iy rioya qilingan holda yetkazib beriladi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION (KO'P SO'RALADIGAN SAVOLLAR) -->
+    <section class="max-w-4xl mx-auto px-4 py-16">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-extrabold">Tez-tez So'raladigan Savollar</h2>
+        <p class="text-muted mt-2">Buyurtma berish va yetkazish bo'yicha eng muhim ma'lumotlar</p>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-card bg-white border border-slate-200 dark:border-slate-800 rounded-xl p-5">
+          <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+            <i class="fas fa-circle-question text-teal-600"></i> Buyurtma bergandan so'ng nima sodir bo'ladi?
+          </h4>
+          <p class="text-muted text-sm">
+            Siz buyurtmani tasdiqlashingiz bilan barcha ma'lumotlar va tanlangan tovarlar to'g'ridan-to'g'ri bizning Telegram operator botimizga yetib boradi va 10-15 daqiqa ichida buyurtmani yakunlash uchun sizga qo'ng'iroq qilinadi.
+          </p>
+        </div>
+        <div class="bg-card bg-white border border-slate-200 dark:border-slate-800 rounded-xl p-5">
+          <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+            <i class="fas fa-circle-question text-teal-600"></i> To'lovni qanday usullarda amalga oshirish mumkin?
+          </h4>
+          <p class="text-muted text-sm">
+            To'lovni mahsulotni qo'lingizga olgach naqd pulda yoki Uzcard/Humo kartasi orqali, shuningdek Click va Payme orqali oldindan to'lash imkoniyati mavjud.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-nav bg-white border-t border-slate-200 dark:border-slate-800 py-10 text-sm">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <span class="text-xl font-bold text-teal-600 flex items-center gap-2 mb-3">
+          <i class="fas fa-heart-pulse"></i> MedHelp PRO
+        </span>
+        <p class="text-muted text-xs leading-relaxed">
+          Odamlar salomatligini himoya qilish va zaruriy tibbiy vositalarni eng tez fursatda yetkazib berish xizmati.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3 text-slate-800 dark:text-slate-200">Sahifalar</h4>
+        <ul class="space-y-2 text-xs text-muted">
+          <li><a href="index.html" class="hover:text-teal-600">Bosh sahifa</a></li>
+          <li><a href="products.html" class="hover:text-teal-600">Katalog</a></li>
+          <li><a href="favorites.html" class="hover:text-teal-600">Saralanganlar</a></li>
+          <li><a href="cart.html" class="hover:text-teal-600">Savatcha</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3 text-slate-800 dark:text-slate-200">Bo'limlar</h4>
+        <ul class="space-y-2 text-xs text-muted">
+          <li>Tibbiy Apparatlar</li>
+          <li>Immunitet va Vitaminlar</li>
+          <li>Shoshilinch Yordam</li>
+          <li>Ortopediya Mahsulotlari</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3 text-slate-800 dark:text-slate-200">Bog'lanish</h4>
+        <p class="text-xs text-muted mb-2">Telegram: <a href="https://t.me/fifaazimov" target="_blank" class="text-teal-600 font-bold underline">@fifaazimov</a></p>
+        <p class="text-xs text-muted">Toshkent, O'zbekiston</p>
+      </div>
+    </div>
+    <div class="border-t border-slate-200 dark:border-slate-800 pt-6 text-center text-xs text-muted">
+      <p>&copy; 2026 MedHelp Pro. Barcha huquqlar himoyalangan.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

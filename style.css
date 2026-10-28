@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #0d9488;
+  border-radius: 4px;
+}
+
+/* Dark mode sozlamalari */
+body.dark {
+  background-color: #0b1120;
+  color: #f1f5f9;
+}
+body.dark .bg-card {
+  background-color: #131d31;
+  border-color: #1e293b;
+}
+body.dark .bg-nav {
+  background-color: rgba(19, 29, 49, 0.95);
+  border-color: #1e293b;
+}
+body.dark .text-muted {
+  color: #94a3b8;
+}
+body.dark input, body.dark select, body.dark textarea {
+  background-color: #0b1120 !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+/* Toast xabarnoma */
+#toast {
+  visibility: hidden;
+  min-width: 250px;
+  transform: translateY(100px);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+#toast.show {
+  visibility: visible;
+  transform: translateY(0);
+}

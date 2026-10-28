@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog va Qidiruv - MedHelp Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+  <header class="bg-nav bg-white/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-2xl font-extrabold text-teal-600">
+        <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shadow-md">
+          <i class="fas fa-notes-medical text-xl"></i>
+        </div>
+        <span>Med<span class="text-slate-800 dark:text-white">Help</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 font-semibold text-sm">
+        <a href="index.html" class="hover:text-teal-600" data-i18n="home">Bosh sahifa</a>
+        <a href="products.html" class="text-teal-600 font-bold" data-i18n="products">Mahsulotlar</a>
+        <a href="favorites.html" class="hover:text-teal-600" data-i18n="favorites">Saralanganlar</a>
+        <a href="about.html" class="hover:text-teal-600" data-i18n="about">Biz haqimizda</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <select id="langSelect" class="border border-slate-200 dark:border-slate-700 font-semibold rounded-lg px-2 py-1 text-xs bg-slate-100 dark:bg-slate-800">
+          <option value="uz">UZ</option>
+          <option value="ru">RU</option>
+          <option value="en">EN</option>
+        </select>
+        <button id="themeToggleBtn" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="favorites.html" class="relative w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center">
+          <i class="fas fa-heart text-slate-600 dark:text-slate-300"></i>
+          <span id="favCount" class="absolute -top-1.5 -right-1.5 bg-red-500 text-white font-bold text-[10px] w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </a>
+        <a href="cart.html" class="relative bg-teal-600 text-white px-3.5 py-2 rounded-lg font-semibold text-sm flex items-center gap-2">
+          <i class="fas fa-cart-shopping"></i>
+          <span id="cartCount" class="bg-white text-teal-700 font-extrabold text-xs px-1.5 py-0.2 rounded-full">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+    
+    <!-- SEARCH VA SARALASH PANELI -->
+    <div class="bg-card bg-white p-5 rounded-2xl border border-slate-200 dark:border-slate-800 mb-8 shadow-sm flex flex-col md:flex-row gap-4 justify-between items-center">
+      <!-- Search Input -->
+      <div class="relative w-full md:w-96">
+        <i class="fas fa-search absolute left-3.5 top-3.5 text-slate-400"></i>
+        <input type="text" id="searchInput" placeholder="Mahsulot nomi yoki tavsifi bo'yicha qidiring..." data-i18n-placeholder="searchPlaceholder"
+               class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-teal-500 text-sm">
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+        <!-- Saralash (Sort) -->
+        <select id="sortSelect" class="border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm bg-white dark:bg-slate-800 font-medium outline-none">
+          <option value="default" data-i18n="sortDefault">Saralash: Standart</option>
+          <option value="asc" data-i18n="sortPriceAsc">Narx: Avval arzonlari</option>
+          <option value="desc" data-i18n="sortPriceDesc">Narx: Avval qimmatlari</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- KATEGORIYALAR FILTER TUGMALARI -->
+    <div class="flex flex-wrap gap-2 mb-8" id="categoryButtons">
+      <button onclick="setCategoryFilter('all')" class="cat-btn active bg-teal-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition" data-cat="all" data-i18n="allCategories">Barchasi</button>
+      <button onclick="setCategoryFilter('devices')" class="cat-btn bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-100 transition" data-cat="devices" data-i18n="catDevices">Tibbiy Apparatlar</button>
+      <button onclick="setCategoryFilter('vitamins')" class="cat-btn bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-100 transition" data-cat="vitamins" data-i18n="catVitamins">Vitamin va Qo'shimchalar</button>
+      <button onclick="setCategoryFilter('care')" class="cat-btn bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-100 transition" data-cat="care" data-i18n="catCare">Uy Aptechkasi va Parvarish</button>
+      <button onclick="setCategoryFilter('ortho')" class="cat-btn bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-100 transition" data-cat="ortho" data-i18n="catOrtho">Ortopediya</button>
+    </div>
+
+    <!-- MAHSULOTLAR RO'YXATI GRID -->
+    <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+  </main>
+
+  <footer class="bg-nav bg-white border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-muted">
+    <p>&copy; 2026 MedHelp Pro.</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    let activeCategory = "all";
+
+    function setCategoryFilter(category) {
+      activeCategory = category;
+      document.querySelectorAll(".cat-btn").forEach(btn => {
+        if (btn.getAttribute("data-cat") === category) {
+          btn.className = "cat-btn active bg-teal-600 text-white px-4 py-2 rounded-xl text-xs font-bold transition";
+        } else {
+          btn.className = "cat-btn bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-100 transition";
+        }
+      });
+      window.renderProductsPage();
+    }
+
+    window.renderProductsPage = () => {
+      const grid = document.getElementById("productsGrid");
+      const query = document.getElementById("searchInput").value.toLowerCase().trim();
+      const sortValue = document.getElementById("sortSelect").value;
+
+      let filtered = products.filter(p => {
+        const matchesCategory = activeCategory === "all" || p.category === activeCategory;
+        const matchesSearch = p.name[currentLang].toLowerCase().includes(query) || p.desc[currentLang].toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (sortValue === "asc") {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortValue === "desc") {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      grid.innerHTML = "";
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-16">
+            <i class="fas fa-box-open text-5xl text-slate-300 dark:text-slate-600 mb-3 block"></i>
+            <p class="text-base font-semibold text-muted">Hech qanday mahsulot topilmadi.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(p => {
+        const isFav = favorites.includes(p.id);
+        const card = document.createElement("div");
+        card.className = "bg-card bg-white border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group";
+        card.innerHTML = `
+          <div class="relative overflow-hidden">
+            <img src="${p.image}" alt="${p.name[currentLang]}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-3 left-3 bg-teal-600/90 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              ${p.badge}
+            </span>
+            <button onclick="toggleFavorite(${p.id})" class="absolute top-3 right-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm w-9 h-9 rounded-full flex items-center justify-center shadow hover:scale-110 transition">
+              <i class="fa${isFav ? 's' : 'r'} fa-heart ${isFav ? 'text-red-500' : 'text-slate-400'} text-base"></i>
+            </button>
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-1.5 text-xs text-amber-500 font-bold mb-2">
+                <i class="fas fa-star"></i>
+                <span>${p.rating}</span>
+                <span class="text-muted font-normal">(${p.reviews})</span>
+              </div>
+              <h3 class="font-bold text-base mb-1.5 line-clamp-1">${p.name[currentLang]}</h3>
+              <p class="text-xs text-muted line-clamp-2 leading-relaxed mb-4">${p.desc[currentLang]}</p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <div>
+                <span class="text-lg font-extrabold text-teal-600">${p.price.toLocaleString()}</span>
+                <span class="text-xs font-semibold text-slate-500">${i18n[currentLang].currency}</span>
+              </div>
+              <button onclick="addToCart(${p.id})" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow-sm transition">
+                <i class="fas fa-plus"></i> <span data-i18n="addToCart">${i18n[currentLang].addToCart}</span>
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    };
+
+    window.renderPageContent = window.renderProductsPage;
+
+    document.getElementById("searchInput").addEventListener("input", window.renderProductsPage);
+    document.getElementById("sortSelect").addEventListener("change", window.renderProductsPage);
+    document.addEventListener("DOMContentLoaded", window.renderProductsPage);
+  </script>
+</body>
+</html>

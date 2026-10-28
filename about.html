@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biz haqimizda - MedHelp Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+  <header class="bg-nav bg-white/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 text-2xl font-extrabold text-teal-600">
+        <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shadow-md">
+          <i class="fas fa-notes-medical text-xl"></i>
+        </div>
+        <span>Med<span class="text-slate-800 dark:text-white">Help</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 font-semibold text-sm">
+        <a href="index.html" class="hover:text-teal-600" data-i18n="home">Bosh sahifa</a>
+        <a href="products.html" class="hover:text-teal-600" data-i18n="products">Mahsulotlar</a>
+        <a href="favorites.html" class="hover:text-teal-600" data-i18n="favorites">Saralanganlar</a>
+        <a href="about.html" class="text-teal-600 font-bold" data-i18n="about">Biz haqimizda</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <select id="langSelect" class="border border-slate-200 dark:border-slate-700 font-semibold rounded-lg px-2 py-1 text-xs bg-slate-100 dark:bg-slate-800">
+          <option value="uz">UZ</option>
+          <option value="ru">RU</option>
+          <option value="en">EN</option>
+        </select>
+        <button id="themeToggleBtn" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-12 flex-grow">
+    <div class="bg-card bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div class="inline-flex items-center gap-2 bg-teal-100 dark:bg-teal-900/60 text-teal-800 dark:text-teal-200 px-3 py-1 rounded-full text-xs font-bold mb-4">
+        MedHelp Pro Missiyasi
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold mb-6">Inson Salomatligi va Hayot Sifatini Qo'llab-quvvatlaymiz</h1>
+      <p class="text-muted leading-relaxed text-base mb-8">
+        <strong>MedHelp Pro</strong> — tibbiyot sohasidagi zamonaviy innovatsiyalarni har bir xonadonga yetkazish uchun yaratilgan raqamli platforma. Biz tibbiy asbob-uskunalar, diagnostika apparatlari, reabilitatsiya anjomlari va vitaminlarni vositachilarsiz, arzon va sertifikatlangan holda yetkazib beramiz.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-6 my-10">
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <i class="fas fa-hospital-user text-2xl text-teal-600 mb-3"></i>
+          <h3 class="font-bold text-lg mb-1">To'g'ridan-to'g'ri Ishlov</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Har bir buyurtma operatorlarimizga Telegram orqali real-vaqt rejimida keladi va mijoz bilan zudlik bilan aloqa o'rnatiladi.
+          </p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <i class="fas fa-certificate text-2xl text-teal-600 mb-3"></i>
+          <h3 class="font-bold text-lg mb-1">Sertifikatlangan Mahsulotlar</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Xarid qilingan har qanday qurilma rasmiy zavod kafolatiga va tibbiy muvofiqlik sertifikatiga ega.
+          </p>
+        </div>
+      </div>
+
+      <!-- Aloqa bo'limi -->
+      <div class="pt-8 border-t border-slate-100 dark:border-slate-800">
+        <h3 class="text-xl font-bold mb-4">Biz bilan bog'lanish:</h3>
+        <div class="space-y-3 text-sm">
+          <p class="flex items-center gap-3">
+            <i class="fab fa-telegram text-teal-600 text-lg"></i>
+            <span>Telegram: <a href="https://t.me/fifaazimov" target="_blank" class="font-bold text-teal-600 underline">@fifaazimov</a></span>
+          </p>
+          <p class="flex items-center gap-3">
+            <i class="fas fa-location-dot text-teal-600 text-lg"></i>
+            <span>Manzil: Toshkent shahri, Yunusobod tumani</span>
+          </p>
+          <p class="flex items-center gap-3">
+            <i class="fas fa-clock text-teal-600 text-lg"></i>
+            <span>Ish tartibi: Dushanba - Yakshanba (24/7 buyurtmalar qabuli)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-nav bg-white border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-muted">
+    <p>&copy; 2026 MedHelp Pro.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
